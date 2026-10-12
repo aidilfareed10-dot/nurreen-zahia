@@ -43,9 +43,11 @@
   document.addEventListener('click', (e) => { const a = e.target.closest('[data-area]'); if (a) $('#fArea').value = a.dataset.area; });
   showPractice(0);
 
-  // ---------- associates ----------
+  // ---------- junior partners & associates ----------
+  const JUNIOR = [
+    ['Adam Afiz bin Zairul Azizi', 'Civil & commercial litigation · Contractual disputes · Debt recovery'],
+  ];
   const ASSOC = [
-    ['Adam Afiz bin Zairul Azizi', 'Civil & commercial litigation · Debt recovery'],
     ['Fatihah binti Faizal', 'Corporate & commercial advisory · Regulatory compliance'],
     ['Izza Batrisya binti Ahmad Hamidi', 'Conveyancing & real estate · Banking documentation'],
     ['Muhammad Darwisy bin Mohd Nazri', 'Construction law & claims · Arbitration & mediation'],
@@ -54,7 +56,11 @@
     ['Wan Nur Aisyah binti Mohd Jaafar', 'Civil litigation · Injunctions · Property disputes'],
   ];
   const initials = (n) => n.split(' ').filter((w) => !/^(bin|binti|bt|b\.)$/i.test(w)).slice(0, 2).map((w) => w[0]).join('');
-  $('#associates').innerHTML = ASSOC.map(([n, f]) => `<div class="assoc"><div class="monogram">${initials(n)}</div><div><h4>${n}</h4><p>Legal Associate · LL.B (Hons), Advocate &amp; Solicitor</p><p>${f}</p></div></div>`).join('');
+  const card = (role) => ([n, f]) => `<div class="assoc"><div class="monogram">${initials(n)}</div><div><h4>${n}</h4><p>${role} · LL.B (Hons), Advocate &amp; Solicitor</p><p>${f}</p></div></div>`;
+  $('#juniorPartners').innerHTML = JUNIOR.map(card('Junior Partner')).join('');
+  $('#associates').innerHTML = ASSOC.map(card('Legal Associate')).join('');
+  $('#jpCount').textContent = String(JUNIOR.length).padStart(2, '0');
+  $('#laCount').textContent = String(ASSOC.length).padStart(2, '0');
 
   // ---------- FAQ ----------
   const FAQ = [
