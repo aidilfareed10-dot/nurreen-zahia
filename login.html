@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign in — Nurreen Zahia & Associates</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="auth">
+  <aside class="auth-side">
+    <div class="auth-map" data-worldmap data-align="center" aria-hidden="true"></div>
+    <div class="auth-top">
+      <a href="index.html" class="brand-link" style="color:#fff;display:flex;align-items:center;gap:12px">
+        <span style="width:40px;height:40px;display:grid;place-items:center;border:1.5px solid var(--gold);font:600 18px var(--serif)">NZ</span>
+        <span style="font:600 19px var(--serif)">Nurreen Zahia <em style="color:var(--gold)">&amp; Associates</em></span>
+      </a>
+      <label class="lang"><select data-lang-switch aria-label="Language"></select></label>
+    </div>
+    <div>
+      <h1>Your matter,<br /><em>wherever you are.</em></h1>
+      <ul>
+        <li>Follow your case progress stage by stage, in real time</li>
+        <li>Every date shown in your own time zone</li>
+        <li>Share documents securely with your lawyer</li>
+        <li>View invoices in your preferred currency</li>
+      </ul>
+    </div>
+    <p class="hide-m" style="color:var(--muted-light);font-size:13px;margin:0">Protected by legal professional privilege · PDPA 2010</p>
+  </aside>
+
+  <main class="auth-main">
+    <div class="auth-card">
+      <div class="auth-tabs" role="tablist">
+        <button type="button" data-role="client" class="on">Client</button>
+        <button type="button" data-role="admin">Chambers staff</button>
+      </div>
+      <h2 data-i18n="login.title">Welcome back</h2>
+      <p id="sub" data-i18n="login.sub">Sign in to view your matters, documents and updates.</p>
+      <form id="loginForm" novalidate>
+        <div class="field"><label for="email">Email address</label><input id="email" type="email" class="input" autocomplete="username" required /></div>
+        <div class="field"><label for="pw">Password</label><input id="pw" type="password" class="input" autocomplete="current-password" required /></div>
+        <p class="form-error" id="err" role="alert" style="color:var(--danger);font-size:14px;margin:0"></p>
+        <button class="btn btn-navy" type="submit"><span data-i18n="login.btn">Sign in</span></button>
+      </form>
+      <p style="margin-top:20px;font-size:14px;color:var(--muted)" id="newLink"><a href="register.html" class="btn-link" data-i18n="login.new">New client? Create an account</a></p>
+      <p style="font-size:13px;color:var(--muted)">Forgot your password? Call the chambers on +60 3-5510 2266.</p>
+      <div class="demo">
+        <strong>Prototype preview.</strong> Explore with a sample account:
+        <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+          <button type="button" class="btn btn-plain btn-sm" data-demo="client">Sample client (London)</button>
+          <button type="button" class="btn btn-plain btn-sm" data-demo="admin">Sample admin</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script>
+(function () {
+  const params = new URLSearchParams(location.search);
+  let role = params.get('role') === 'admin' ? 'admin' : 'client';
+  const tabs = document.querySelectorAll('.auth-tabs button');
+  function setRole(r) {
+    role = r;
+    tabs.forEach((b) => b.classList.toggle('on', b.dataset.role === r));
+    document.getElementById('newLink').style.display = r === 'admin' ? 'none' : '';
+    document.getElementById('sub').textContent = r === 'admin' ? 'Sign in to manage enquiries, clients and case progress.' : I18N.t('login.sub');
+  }
+  tabs.forEach((b) => b.addEventListener('click', () => setRole(b.dataset.role)));
+  setRole(role);
+
+  const current = Store.current();
+  if (current && !params.get('role')) location.replace(current.role === 'admin' ? 'admin.html' : 'client.html');
+
+  document.getElementById('loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const err = document.getElementById('err');
+    const u = Store.login(document.getElementById('email').value, document.getElementById('pw').value);
+    if (!u) { err.textContent = 'Email or password is incorrect.'; return; }
+    if (u.role !== role) { Store.logout(); err.textContent = role === 'admin' ? 'This account does not have staff access.' : 'Staff accounts sign in under “Chambers staff”.'; return; }
+    location.href = u.role === 'admin' ? 'admin.html' : 'client.html';
+  });
+
+  // Sample accounts come from the demo seed in store.js.
+  document.querySelectorAll('[data-demo]').forEach((b) => b.addEventListener('click', () => {
+    const u = Store.db.users.find((x) => x.id === (b.dataset.demo === 'admin' ? 'u_admin' : 'u_sarah'));
+    setRole(u.role);
+    document.getElementById('email').value = u.email;
+    document.getElementById('pw').value = u.password;
+    document.getElementById('loginForm').requestSubmit();
+  }));
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/d3-array@3.2.4/dist/d3-array.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-geo@3.1.1/dist/d3-geo.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script src="assets/js/worldmap.js"></script>
+</body>
+</html>

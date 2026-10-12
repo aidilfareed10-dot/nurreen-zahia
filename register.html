@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create an account — Nurreen Zahia & Associates</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+<div class="auth">
+  <aside class="auth-side">
+    <div class="auth-map" data-worldmap data-align="center" aria-hidden="true"></div>
+    <div class="auth-top">
+      <a href="index.html" style="color:#fff;display:flex;align-items:center;gap:12px;text-decoration:none">
+        <span style="width:40px;height:40px;display:grid;place-items:center;border:1.5px solid var(--gold);font:600 18px var(--serif)">NZ</span>
+        <span style="font:600 19px var(--serif)">Nurreen Zahia <em style="color:var(--gold)">&amp; Associates</em></span>
+      </a>
+      <label class="lang"><select data-lang-switch aria-label="Language"></select></label>
+    </div>
+    <div>
+      <h1>Open your<br /><em>client portal.</em></h1>
+      <ul>
+        <li>Tell us your country, time zone and preferred currency once</li>
+        <li>We link your matters to your account after engagement</li>
+        <li>Message your lawyer and book calls from anywhere</li>
+      </ul>
+    </div>
+    <p class="hide-m" style="color:var(--muted-light);font-size:13px;margin:0">Your data is processed under the Personal Data Protection Act 2010.</p>
+  </aside>
+  <main class="auth-main">
+    <div class="auth-card">
+      <h2>Create an account</h2>
+      <p>Already a client? <a class="btn-link" href="login.html">Sign in</a></p>
+      <form id="regForm" novalidate>
+        <div class="field"><label for="name">Full name</label><input id="name" class="input" autocomplete="name" required /></div>
+        <div class="field"><label for="email">Email address</label><input id="email" type="email" class="input" autocomplete="email" required /></div>
+        <div class="field"><label for="company">Company (optional)</label><input id="company" class="input" autocomplete="organization" /></div>
+        <div class="field"><label for="country">Country of residence</label><select id="country" class="input"></select></div>
+        <div class="field"><label for="tz">Time zone</label><select id="tz" class="input"></select></div>
+        <div class="field"><label for="currency">Preferred currency for estimates</label><select id="currency" class="input"></select></div>
+        <div class="field"><label for="pw">Create a password</label><input id="pw" type="password" class="input" autocomplete="new-password" minlength="8" required /></div>
+        <label class="check"><input type="checkbox" id="consent" /><span>I consent to my personal data being processed under the PDPA 2010.</span></label>
+        <p id="err" role="alert" style="color:var(--danger);font-size:14px;margin:0"></p>
+        <button class="btn btn-navy" type="submit">Create account</button>
+      </form>
+    </div>
+  </main>
+</div>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const tz = NZA.detectTZ();
+  NZA.COUNTRIES.forEach(([c]) => $('country').add(new Option(c, c)));
+  const zones = NZA.TIMEZONES.includes(tz) ? NZA.TIMEZONES : [tz, ...NZA.TIMEZONES];
+  zones.forEach((z) => $('tz').add(new Option(Fmt.tzLabel(z), z)));
+  $('tz').value = tz;
+  Object.keys(Store.db.settings.rates).forEach((c) => $('currency').add(new Option(c, c)));
+  const q = new URLSearchParams(location.search);
+  if (q.get('email')) $('email').value = q.get('email');
+  $('regForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const err = $('err');
+    if (!$('name').value.trim() || !/^\S+@\S+\.\S+$/.test($('email').value)) return (err.textContent = 'Please enter your name and a valid email.');
+    if ($('pw').value.length < 8) return (err.textContent = 'Password must be at least 8 characters.');
+    if (!$('consent').checked) return (err.textContent = 'Please confirm your PDPA consent.');
+    const r = Store.register({ name: $('name').value.trim(), email: $('email').value.trim(), company: $('company').value.trim(), country: $('country').value, tz: $('tz').value, currency: $('currency').value, password: $('pw').value, lang: I18N.getLang() });
+    if (r.error) return (err.textContent = r.error);
+    Store.login(r.user.email, $('pw').value);
+    location.href = 'client.html';
+  });
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/d3-array@3.2.4/dist/d3-array.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-geo@3.1.1/dist/d3-geo.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script src="assets/js/worldmap.js"></script>
+</body>
+</html>
