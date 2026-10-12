@@ -17,11 +17,12 @@ html, body { overflow-x: clip; }
 .header.scrolled { border-color: var(--line); box-shadow: 0 4px 20px rgba(11, 26, 46, 0.05); }
 .header-in { display: flex; align-items: center; justify-content: space-between; min-height: 76px; gap: 24px; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--navy); }
-.brand-mark { width: 44px; height: 44px; display: grid; place-items: center; border: 1.5px solid var(--gold); color: var(--navy); font: 600 20px/1 var(--serif); letter-spacing: 0.04em; }
+.brand-logo { width: 54px; height: auto; flex: none; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.05; }
-.brand-text strong { font: 600 21px var(--serif); letter-spacing: 0.02em; }
-.brand-text small { font: italic 500 15px var(--serif); color: var(--gold); }
-.brand.light, .brand.light .brand-mark { color: #fff; }
+.brand-text strong { font: 700 19px var(--serif); letter-spacing: 0.06em; text-transform: uppercase; }
+.brand-text small { font: 600 12.5px var(--serif); letter-spacing: 0.12em; text-transform: uppercase; color: var(--silver); margin-top: 3px; }
+.brand.light { color: #fff; }
+.brand.light .brand-text small { color: var(--silver-light); }
 .nav { display: flex; align-items: center; gap: 26px; }
 .nav a { font-size: 14px; font-weight: 500; text-decoration: none; color: var(--ink); position: relative; }
 .nav a:not(.btn)::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px; background: var(--gold); transform: scaleX(0); transition: transform .2s; }
@@ -259,5 +260,6 @@ html, body { overflow-x: clip; }
   .stat { padding: 26px 16px; }
   .stat strong, .stat span { font-size: 38px; }
   .footer-in { grid-template-columns: 1fr; }
-  .brand-text strong { font-size: 18px; }
+  .brand-text strong { font-size: 16px; }
+  .brand-logo { width: 44px; }
 }

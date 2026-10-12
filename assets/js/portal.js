@@ -73,7 +73,7 @@
     document.body.innerHTML = `
       <div class="shell">
         <aside class="side" id="side">
-          <a class="brand" href="index.html"><span class="brand-mark">NZ</span><span class="brand-text"><strong>Nurreen Zahia</strong><small>${role === 'admin' ? 'Chambers admin' : 'Client portal'}</small></span></a>
+          <a class="brand" href="index.html"><img class="brand-logo" src="assets/img/logo-mark-light.png" alt="" width="46" height="40" /><span class="brand-text"><strong>Nurreen Zahia</strong><small>${role === 'admin' ? 'Chambers admin' : 'Client portal'}</small></span></a>
           <nav id="sideNav">${nav.map((n) => n.label ? `<div class="side-label">${esc(n.label)}</div>` : `<a class="nav-i" href="#${n.id}" data-id="${n.id}">${icon(n.icon)}<span ${n.i18n ? `data-i18n="${n.i18n}"` : ''}>${esc(n.text)}</span>${n.count ? `<span class="count">${n.count}</span>` : ''}</a>`).join('')}</nav>
           <div class="side-foot"><div class="monogram">${initials(user.name)}</div><div><strong>${esc(user.name)}</strong><small>${esc(role === 'admin' ? user.title || 'Administrator' : user.country || 'Client')}</small></div><button id="signOut" title="Sign out" aria-label="Sign out">${icon('out', 16)}</button></div>
         </aside>

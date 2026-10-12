@@ -12,6 +12,8 @@
   --muted-light: #a9b2c0;
   --gold: #b48f57;
   --gold-light: #d8bd8d;
+  --silver: #7f8288;
+  --silver-light: #c3c5ca;
   --gold-ink: #85642f; /* gold for text on light backgrounds (≥4.5:1) */
   --gold-btn: #8d6b3a; /* gold button fill with white text (≥4.5:1) */
   --line: #e5ded1;
