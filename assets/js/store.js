@@ -47,7 +47,7 @@
       matters: [
         {
           id: 'm1', ref: 'NZA/CL/2026/0142', clientId: 'u_sarah', title: 'Joint-venture breach of contract — Harbourline v. Meridian Properties',
-          area: AREAS[1], stage: 3, lawyer: 'Nurreen Najieha', opened: daysFromNow(-55), court: 'High Court of Malaya, Shah Alam',
+          area: AREAS[1], stage: 3, lawyer: 'Nurreen Najieha', opened: daysFromNow(-55), court: 'Shah Alam Court Complex',
           nextEvent: { label: 'Case management (e-Review)', date: daysFromNow(9, 9, 30) },
           updates: [
             { date: daysFromNow(-55), text: 'Matter opened. Engagement letter and remote KYC completed.' },

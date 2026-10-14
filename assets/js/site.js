@@ -19,7 +19,7 @@
 
   // ---------- practice areas ----------
   const PRACTICE = [
-    ['General Civil Litigation', 'Robust courtroom representation before the High Court of Malaya and subordinate courts, dedicated to protecting client rights and securing optimal remedies.', ['High Court & appellate advocacy', 'Dispute resolution & trial defence', 'Civil claims & court actions']],
+    ['General Civil Litigation', 'Robust courtroom representation before the Malaysian courts, dedicated to protecting client rights and securing optimal remedies.', ['Trial & appellate advocacy', 'Dispute resolution & trial defence', 'Civil claims & court actions']],
     ['Commercial Litigation & Contract Disputes', 'Strategic handling of breach of contract, business disputes and contractual claims, with careful commercial and financial risk assessment — including disputes with overseas counterparties.', ['Breach of contract & enforcement', 'Business & partnership conflicts', 'Claims for damages & restitution']],
     ['Construction Law & Infrastructure', 'Specialised counsel on construction agreements, delays, defective works, payment obligations, and CIPAA adjudication or court claims.', ['Construction contract disputes', 'Payment claims & defective works', 'Delays & liquidated damages']],
     ['Injunctions & Specific Performance', 'Urgent interlocutory applications and equitable remedies where monetary compensation is inadequate to protect legal and commercial interests.', ['Interlocutory & prohibitory injunctions', 'Specific performance orders', 'Asset preservation & restraining orders']],
@@ -44,7 +44,7 @@
   showPractice(0);
 
   // ---------- partners ----------
-  const CRED = 'LL.B (Hons) UiTM · Advocate & Solicitor, High Court of Malaya';
+  const CRED = 'LL.B (Hons) UiTM · Advocate & Solicitor';
   const PARTNERS = [
     {
       id: 'nurreen', name: 'Nurreen Najieha', role: 'Founder & Managing Partner', photo: 'assets/img/nurreen-najieha.jpg',
@@ -95,7 +95,7 @@
         'Advising employers and businesses on contract compliance, regulatory requirements, and dispute resolution.',
         'Assisting clients in structured negotiation and mediation forums to achieve cost-efficient out-of-court settlements.',
         'Representing parties in construction-related claims, payment defaults, and performance disputes.',
-        'Managing court proceedings before the High Court of Malaya and subordinate courts with meticulous documentation.',
+        'Managing court proceedings before the Malaysian courts with meticulous documentation.',
       ],
     },
   ];
@@ -221,7 +221,7 @@
     ['International', 'Can I pay in my own currency?', 'Our fees are quoted in Malaysian Ringgit, and your portal shows every estimate and invoice converted into your preferred currency for reference. Payment is accepted by international bank transfer.'],
     ['International', 'Can a foreign judgment or arbitral award be enforced in Malaysia?', 'Often, yes. Judgments from certain reciprocating countries can be registered under Malaysian law, and arbitral awards from New York Convention states can be recognised and enforced. We will assess which route applies to your judgment or award.'],
     ['', 'How are your legal fees structured?', 'Depending on the matter we work on fixed fees, staged fees or time-based billing. You will receive a written estimate before any work begins, and no surprise charges.'],
-    ['', 'Can you assist with urgent injunctions or freezing orders?', 'Yes. Where assets or evidence are at risk we can move quickly to seek urgent relief from the High Court. Tick the “urgent” box on the enquiry form or call us directly.'],
+    ['', 'Can you assist with urgent injunctions or freezing orders?', 'Yes. Where assets or evidence are at risk we can move quickly to seek urgent relief from the court. Tick the “urgent” box on the enquiry form or call us directly.'],
     ['', 'Is my information kept confidential?', 'Absolutely. Communications with us are protected by legal professional privilege, and personal data is handled in line with the Personal Data Protection Act 2010.'],
   ];
   $('#faqList').innerHTML = FAQ.map(([tag, q, a], i) => `<details${i ? '' : ' open'}><summary>${tag ? `<span class="tag">${tag}</span>` : ''}${q}</summary><p>${a}</p></details>`).join('');
