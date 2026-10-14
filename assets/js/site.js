@@ -43,11 +43,164 @@
   document.addEventListener('click', (e) => { const a = e.target.closest('[data-area]'); if (a) $('#fArea').value = a.dataset.area; });
   showPractice(0);
 
-  // ---------- junior partners & associates ----------
-  const JUNIOR = [
-    ['Adam Afiz bin Zairul Azizi', 'Civil & commercial litigation · Contractual disputes · Debt recovery'],
+  // ---------- partners ----------
+  const CRED = 'LL.B (Hons) UiTM · Advocate & Solicitor, High Court of Malaya';
+  const PARTNERS = [
+    {
+      id: 'nurreen', name: 'Nurreen Najieha', role: 'Founder & Managing Partner', photo: 'assets/img/nurreen-najieha.jpg',
+      summary: 'Founder and Managing Partner of the firm, focusing on civil and commercial litigation, contractual disputes, and high-stakes dispute resolution. Committed to providing practical and effective legal solutions.',
+      about: [
+        'Nurreen Najieha is the Founder and Managing Partner of the firm, with a strong focus on civil and commercial litigation, contractual disputes and dispute resolution. She is committed to providing practical and effective legal solutions to individuals, businesses and corporate clients facing complex legal issues.',
+        "As the founding partner of the firm, Nurreen plays a key role in shaping the firm's vision, developing its legal practice and maintaining high standards of professional service. Her approach combines careful legal analysis with a practical understanding of her clients' commercial and personal interests.",
+        'Her practice covers a broad range of civil and commercial matters, including contractual disputes, claims for damages, injunctions, debt recovery, construction disputes and shareholder disputes. She also advises clients on the preparation, interpretation and enforcement of commercial agreements and assists clients in resolving disputes through negotiation, mediation and litigation.',
+      ],
+      bio: [
+        'Nurreen has been involved in matters concerning breach of contract, failure to perform contractual obligations, claims for compensation and damages, and disputes arising from business and commercial relationships. She has also advised clients on applications for specific performance and other civil remedies where monetary compensation may not adequately address the loss suffered.',
+        "In addition to her litigation practice, Nurreen has experience handling disputes involving property and construction matters, including disagreements relating to construction contracts, delays, defective works, payment obligations and contractual claims. Her ability to analyse complex contractual and factual issues allows her to develop clear legal strategies tailored to each client's circumstances.",
+        "As Managing Partner, Nurreen is also actively involved in the firm's development and management. She is committed to building a professional and collaborative environment within the firm while ensuring that each client receives attentive, responsive and commercially practical legal advice.",
+        "Nurreen's practice is founded on careful preparation, clear communication and a strong commitment to protecting her clients' legal interests. She represents clients in contentious matters and provides strategic legal advice with the objective of helping clients understand their rights, available remedies and the most appropriate course of action.",
+      ],
+      areas: ['General Civil Litigation', 'Commercial Litigation', 'Contractual Disputes', 'Construction Law', 'Debt Recovery', 'Injunction', 'Specific Performance', 'Damages & Remedies', 'Shareholder Disputes', 'Property & Land Disputes', 'Arbitration and Mediation', 'Corporate & Commercial Advisory'],
+      experience: [
+        'Advising and representing clients in breach of contract and commercial disputes, including claims arising from failure to perform contractual obligations.',
+        'Handling construction disputes involving contractual obligations, payment claims, delays, defective works and damages.',
+        'Advising clients on specific performance and injunction applications where urgent or non-monetary remedies are required.',
+        'Acting in shareholder and business disputes, including disagreements concerning contractual and corporate rights.',
+        'Representing clients in debt recovery proceedings and advising on available remedies for unpaid debts.',
+        'Advising businesses on commercial agreements, contractual obligations and potential legal risks before disputes arise.',
+        'Assisting clients in negotiation, mediation and settlement of civil and commercial disputes.',
+        'Representing individuals and companies in civil litigation proceedings, including claims for damages and other appropriate remedies.',
+      ],
+    },
+    {
+      id: 'zahia', name: 'Zahia Azzahraa', aka: 'Ms. Zahia', role: 'Senior Partner', photo: 'assets/img/zahia-azzahraa.jpg',
+      summary: 'Senior Partner known for her meticulous approach, strong attention to detail, and dedication to practical legal solutions in civil litigation, commercial agreements, property disputes, and debt recovery.',
+      about: [
+        'Meet Ms. Zahia, a dedicated legal professional and Senior Partner of the firm. She is known for her meticulous approach to legal practice, strong attention to detail, and commitment to providing practical and effective legal solutions to her clients. Her dedication to the legal profession is reflected in the care and professionalism she brings to every matter entrusted to her.',
+        'Ms. Zahia has developed a strong practice in civil and commercial matters, where she assists clients in navigating a wide range of legal disputes and contractual issues. She approaches each case with careful consideration of the facts and applicable law, ensuring that her clients receive clear and comprehensive legal advice. Her ability to analyse complex legal issues and develop appropriate strategies makes her a valued member of the firm.',
+        'Her practice includes general civil litigation, commercial disputes, contractual matters and debt recovery. Ms. Zahia also has experience in property and construction-related disputes, where she advises clients on contractual obligations, payment disputes, damages and other legal remedies. Her practical approach enables her to assist both individuals and businesses in protecting their interests and resolving disputes effectively.',
+      ],
+      bio: [
+        'Beyond litigation, Ms. Zahia advises clients on corporate and commercial agreements, assisting them in understanding their contractual rights and obligations and identifying potential legal risks. She also assists clients with negotiations, mediation and settlement discussions, seeking practical resolutions where appropriate while remaining prepared to represent clients through court proceedings when necessary.',
+        'Ms. Zahia has also developed experience in matters involving property transactions and disputes. She assists clients with issues relating to sale and purchase agreements, land matters and contractual obligations arising from property transactions. Her attention to detail is particularly valuable when dealing with documents and agreements involving significant financial and legal interests.',
+        "As Senior Partner, Ms. Zahia plays an important role in maintaining the firm's commitment to professional service and client-focused representation. She works closely with clients to understand their individual circumstances and provides legal advice that is clear, practical and tailored to their needs.",
+        "With her dedication, professionalism and commitment to continuous development, Ms. Zahia strives to provide clients with effective legal representation and reliable legal advice. Her approach to every matter reflects the firm's values of integrity, diligence and commitment to achieving the best possible legal solution for each client.",
+      ],
+      areas: ['General Civil Litigation', 'Commercial Litigation', 'Contractual Disputes', 'Corporate Agreements', 'Debt Recovery', 'Construction Law', 'Property & Land Law', 'Shareholder Disputes', 'Arbitration and Mediation', 'Banking and Finance', 'Insolvency and Bankruptcy', 'Damages and Remedies'],
+      experience: [
+        'Advising clients in civil and commercial disputes, delivering comprehensive legal risk assessments and litigation strategies.',
+        'Representing creditors and corporate entities in high-value debt recovery actions and insolvency proceedings.',
+        'Drafting and negotiating corporate agreements, commercial contracts, and vendor terms to pre-emptively mitigate legal risk.',
+        'Handling contentious property disputes, sale and purchase agreement (SPA) issues, and real estate contractual obligations.',
+        'Advising employers and businesses on contract compliance, regulatory requirements, and dispute resolution.',
+        'Assisting clients in structured negotiation and mediation forums to achieve cost-efficient out-of-court settlements.',
+        'Representing parties in construction-related claims, payment defaults, and performance disputes.',
+        'Managing court proceedings before the High Court of Malaya and subordinate courts with meticulous documentation.',
+      ],
+    },
   ];
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const ICON_CAP = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg>';
+  const ICON_LANG = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 5h9M8.5 3v2M6 5c.5 3 2.5 6 6 8M11 5c-.8 3.5-3 6.5-7 8.5M13 21l4.5-10L22 21M14.5 18h6"/></svg>';
+  const ICON_BOOK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2 5c3-1.5 7-1.5 10 1 3-2.5 7-2.5 10-1v14c-3-1.5-7-1.5-10 1-3-2.5-7-2.5-10-1z"/><path d="M12 6v14"/></svg>';
+  const SHOWN = 4;
+  const nameHtml = (p) => esc(p.name) + (p.aka ? ` <small>(${esc(p.aka)})</small>` : '');
+
+  $('#partners').innerHTML = PARTNERS.map((p) => `
+    <article class="partner" id="partner-${p.id}">
+      <div class="partner-photo">
+        <img src="${p.photo}" alt="Portrait of ${esc(p.name)}" loading="lazy" width="800" height="960" />
+        <div class="partner-cred"><span>${ICON_CAP}${esc(CRED)}</span><span>${ICON_LANG}English · Bahasa Malaysia</span></div>
+      </div>
+      <div class="partner-body">
+        <h3>${nameHtml(p)}</h3>
+        <p class="role">${esc(p.role)}</p>
+        <p class="summary">${esc(p.summary)}</p>
+        <div class="tags">${p.areas.slice(0, SHOWN).map((a) => `<span>${esc(a)}</span>`).join('')}<button type="button" class="tag-more" data-more="${p.id}" aria-expanded="false">+${p.areas.length - SHOWN} more</button></div>
+        <div class="partner-more" id="more-${p.id}" hidden>
+          <h4>About &amp; practice</h4>
+          ${p.about.map((t) => `<p>${esc(t)}</p>`).join('')}
+          <h4>Full practice areas</h4>
+          <div class="tags">${p.areas.map((a) => `<span>${esc(a)}</span>`).join('')}</div>
+          <button type="button" class="btn-link" data-profile="${p.id}">Open full credentials &amp; experience →</button>
+        </div>
+        <div class="partner-actions">
+          <button type="button" class="btn btn-navy btn-sm" data-profile="${p.id}">${ICON_BOOK}Full Profile &amp; Bio</button>
+          <button type="button" class="btn-toggle" data-toggle="${p.id}" aria-expanded="false" aria-controls="more-${p.id}"><span>Read More</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        </div>
+      </div>
+    </article>`).join('');
+
+  function setExpanded(id, open) {
+    const card = $('#partner-' + id), tog = card.querySelector('[data-toggle]'), plus = card.querySelector('[data-more]');
+    $('#more-' + id).hidden = !open;
+    tog.setAttribute('aria-expanded', open);
+    tog.querySelector('span').textContent = open ? 'Collapse' : 'Read More';
+    plus.setAttribute('aria-expanded', open);
+    plus.textContent = open ? 'Show less' : `+${PARTNERS.find((p) => p.id === id).areas.length - SHOWN} more`;
+  }
+  $('#partners').addEventListener('click', (e) => {
+    const t = e.target.closest('[data-toggle], [data-more]');
+    if (t) { const id = t.dataset.toggle || t.dataset.more; setExpanded(id, $('#more-' + id).hidden); return; }
+    const pf = e.target.closest('[data-profile]');
+    if (pf) openProfile(pf.dataset.profile, pf);
+  });
+
+  // ---------- full profile dialog ----------
+  const pfBg = $('#profileBg'), pfBox = $('#profile');
+  let lastFocus = null;
+  function openProfile(id, opener) {
+    const p = PARTNERS.find((x) => x.id === id);
+    lastFocus = opener;
+    pfBox.innerHTML = `
+      <button type="button" class="pf-close" data-close aria-label="Close">×</button>
+      <header class="pf-head">
+        <img src="${p.photo}" alt="" width="96" height="115" />
+        <div><p class="role">${esc(p.role)}</p><h3 id="pfName">${nameHtml(p)}</h3><p class="pf-cred">${esc(CRED)}</p></div>
+      </header>
+      <div class="pf-tabs" role="tablist">
+        <button type="button" role="tab" aria-selected="true" data-tab="about">About &amp; Biography</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="areas">Practice Areas (${p.areas.length})</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="exp">Experience (${p.experience.length})</button>
+      </div>
+      <div class="pf-body">
+        <div class="pf-panel" data-panel="about" role="tabpanel">
+          <div class="pf-creds"><h4>Academic &amp; admission credentials</h4><p>${esc(CRED)}</p><p>Languages: English · Bahasa Malaysia</p></div>
+          ${[...p.about, ...p.bio].map((t) => `<p>${esc(t)}</p>`).join('')}
+        </div>
+        <div class="pf-panel" data-panel="areas" role="tabpanel" hidden>
+          <ul class="pf-areas">${p.areas.map((a) => `<li>${esc(a)}</li>`).join('')}</ul>
+        </div>
+        <div class="pf-panel" data-panel="exp" role="tabpanel" hidden>
+          <h4>Representative matters &amp; experience</h4>
+          <p class="muted">Selected legal advisory, litigation matters and dispute resolutions handled:</p>
+          <ol class="pf-exp">${p.experience.map((x) => `<li>${esc(x)}</li>`).join('')}</ol>
+        </div>
+      </div>
+      <footer class="pf-foot"><p>Need strategic counsel from this partner?</p><a href="#contact" class="btn btn-gold btn-sm" data-close>Request consultation with partner<span class="arrow"></span></a></footer>`;
+    pfBg.hidden = false;
+    document.body.style.overflow = 'hidden';
+    pfBox.querySelector('.pf-close').focus();
+  }
+  function closeProfile() {
+    pfBg.hidden = true;
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus({ preventScroll: true });
+  }
+  pfBg.addEventListener('click', (e) => {
+    if (e.target === pfBg || e.target.closest('[data-close]')) return closeProfile();
+    const tab = e.target.closest('[data-tab]');
+    if (tab) {
+      pfBox.querySelectorAll('[data-tab]').forEach((b) => b.setAttribute('aria-selected', b === tab));
+      pfBox.querySelectorAll('[data-panel]').forEach((pn) => { pn.hidden = pn.dataset.panel !== tab.dataset.tab; });
+      pfBox.querySelector('.pf-body').scrollTop = 0;
+    }
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !pfBg.hidden) closeProfile(); });
+
+  // ---------- legal associates ----------
   const ASSOC = [
+    ['Adam Afiz bin Zairul Azizi', 'Civil & commercial litigation · Contractual disputes · Debt recovery'],
     ['Fatihah binti Faizal', 'Corporate & commercial advisory · Regulatory compliance'],
     ['Izza Batrisya binti Ahmad Hamidi', 'Conveyancing & real estate · Banking documentation'],
     ['Muhammad Darwisy bin Mohd Nazri', 'Construction law & claims · Arbitration & mediation'],
@@ -57,9 +210,7 @@
   ];
   const initials = (n) => n.split(' ').filter((w) => !/^(bin|binti|bt|b\.)$/i.test(w)).slice(0, 2).map((w) => w[0]).join('');
   const card = (role) => ([n, f]) => `<div class="assoc"><div class="monogram">${initials(n)}</div><div><h4>${n}</h4><p>${role} · LL.B (Hons), Advocate &amp; Solicitor</p><p>${f}</p></div></div>`;
-  $('#juniorPartners').innerHTML = JUNIOR.map(card('Junior Partner')).join('');
   $('#associates').innerHTML = ASSOC.map(card('Legal Associate')).join('');
-  $('#jpCount').textContent = String(JUNIOR.length).padStart(2, '0');
   $('#laCount').textContent = String(ASSOC.length).padStart(2, '0');
 
   // ---------- FAQ ----------
